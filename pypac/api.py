@@ -251,6 +251,7 @@ class PACSession(requests.Session):
 
         if using_pac:
             proxies = self._proxy_resolver.get_proxy_for_requests(url)
+            print('pypac: using proxies for url [', url, '] :', proxies)
 
         while True:
             proxy_url = list(proxies.values())[0] if proxies else None

@@ -153,10 +153,10 @@ def proxy_url(value, socks_scheme=None):
         keyword, proxy = parts[0].upper(), parts[1]
         if keyword == "PROXY":
             keyword = "HTTP"
-        elif keyword == "SOCKS":
-            keyword = socks_scheme or "SOCKS5"
+        elif keyword.startswith("SOCKS"):
+            keyword = socks_scheme.upper() or "SOCKS5"
 
-        if keyword in ("HTTP", "HTTPS", "SOCKS4", "SOCKS5"):
+        if keyword in ("HTTP", "HTTPS", "SOCKS4", "SOCKS5", "SOCKS5H"):
             return "{0}://{1}".format(keyword.lower(), proxy)
 
     raise ValueError("Unrecognized proxy config value '{}'".format(value))
